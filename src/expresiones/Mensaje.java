@@ -10,5 +10,6 @@ package expresiones;
  * @author douglas2021
  */
 public enum Mensaje {
+    IDENTIFICADOR,ENTERO,DECIMAL,SIMBOLO,ERROR;
     
 }

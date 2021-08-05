@@ -16,6 +16,8 @@ public class Expresiones {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Visual visual = new Visual();
+        visual.setVisible(true);
     }
     
 }
