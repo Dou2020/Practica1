@@ -6,6 +6,7 @@
 package expresiones;
 
 import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
 
 /**
  *
@@ -26,36 +27,46 @@ public class Controlador {
                 System.out.println(partes.get(partes.size()-1));
                 cadena = "";
             }else{
+                cadena += a;
                 if (i == expresion.length()-1) {
                     partes.add(cadena);
                     System.out.println(partes.get(partes.size()-1));
-                }else{
-                    cadena+=a;
                 }
             } 
         }
         return partes;
     }
+    public void agregarListado(String abc[]){
+        visual.getListado().removeAllItems();
+        for (int i = 0; i < abc.length; i++) {
+            visual.getListado().addItem(abc[i]);
+        }
+    }
     public void evaluar(ArrayList<String> cadena){
         String abc[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"};
         String numero[] = {"1","2","3","4","5","6","7","8","9","0"};
         String simbolo[] = {"{","}","[","[","]",",","+","-","*","/","!"};
-        Mensaje mensaje;
-        
+        agregarListado(abc);
+        visual.getVisualizarEvaluado().removeAll();
         for(String cadenas: cadena){
             if (parte(abc,cadenas)) {
                 System.out.println(Mensaje.IDENTIFICADOR+" "+cadenas);
+                visual.getVisualizarEvaluado().append("\n"+Mensaje.IDENTIFICADOR+" "+cadenas);
             }
             else if (parte(numero,cadenas)) {
                 System.out.println(Mensaje.ENTERO+" "+cadenas);
+                visual.getVisualizarEvaluado().append("\n"+Mensaje.ENTERO+" "+cadenas);
             }
             else if (decimal(numero,cadenas)) {
                 System.out.println(Mensaje.DECIMAL+" "+cadenas);
+                visual.getVisualizarEvaluado().append("\n"+Mensaje.DECIMAL+" "+cadenas);
             }
             else if (parte(simbolo,cadenas)) {
                 System.out.println(Mensaje.SIMBOLO+" "+cadenas);
+                visual.getVisualizarEvaluado().append("\n"+Mensaje.SIMBOLO+" "+cadenas);
             }else{
                 System.out.println(Mensaje.ERROR+" "+cadenas);
+                visual.getVisualizarEvaluado().append("\n"+Mensaje.ERROR+" "+cadenas);
             }
         }
     }
@@ -89,5 +100,10 @@ public class Controlador {
         }else{
             return false;
         }
+    }
+    
+    // Parte de configurar las condiciones
+    public void item1(){
+        
     }
 }
